@@ -2,27 +2,22 @@ package com.samul.javaсorelessons.lesson8;
 
 import java.util.Random;
 
-/*7. Дана последовательность действительных чисел а1 ,а2 ,..., ап. Заменить все ее члены, большие данного Z, этим числом.
-Подсчитать количество замен.
-*/
-public class Task7 {
+/*16. Даны действительные числа a1, a2, ... , a2n. Найти
+
+max( , , , ) a1 + a2n a2 + a2n−1  an + an+1
+.*/
+
+public class Task16 {
 
 	public static void main(String[] args) {
 		double[] a = new double[30];
-		double z = 77.77;
-		int count = 0;
+		double max;
 
 		initArr(a);
 		printArr("Исходный массив: ", a);
-
-		for (int i = 0; i < a.length; i++) {
-			if (a[i] > z) {
-				a[i] = z;
-				count++;
-			}
-		}
-		printArr("\nГотовый массив: ", a);
-		System.out.println("\nКол = " + count);
+		max = findMax(a);
+		
+		System.out.println("\nMax = " + max);
 
 	}
 
@@ -42,4 +37,21 @@ public class Task7 {
 		}
 
 	}
+
+	static double findMax(double[] param) {
+		double max;
+
+		max = param[0] + param[param.length - 1];
+
+		for (int i = 1; i < param.length; i++) {
+			double sum = param[i] + param[param.length - i];
+			if (sum > max) {
+				max = sum;
+			}
+		}
+
+		return max;
+
+	}
+
 }
